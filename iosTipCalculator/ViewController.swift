@@ -19,17 +19,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // make it so bill amount field is first responder
+        // make it so bill amount field is first responder and decimal pad shows
+        ShowDecimalPad()
         billField.becomeFirstResponder()
-        billField.keyboardType = UIKeyboardType.decimalPad
     }
 
     @IBAction func onTap(_ sender: Any) {
-        // dismiss hardware keyboard
+        // dismiss hardware keyboard (disable hw keyboard to emulate real life)
         // view.endEditing(true)
         
         // make it so keyboard is always visible
-        billField.keyboardType = UIKeyboardType.decimalPad
+        ShowDecimalPad()
     }
     
     @IBAction func calculateTip(_ sender: Any) {
@@ -58,6 +58,12 @@ class ViewController: UIViewController {
         
         tipLabel.text = String.init(format: "$%.2f", tip)
         totalLabel.text = String.init(format: "$%.2f", total)
+    }
+    
+    func ShowDecimalPad()
+    {
+        billField.keyboardType = UIKeyboardType.default
+        billField.keyboardType = UIKeyboardType.decimalPad
     }
 }
 
