@@ -56,8 +56,16 @@ class ViewController: UIViewController {
         let tip = bill * tipPercent
         let total = bill + tip
         
-        tipLabel.text = String.init(format: "$%.2f", tip)
-        totalLabel.text = String.init(format: "$%.2f", total)
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        
+        let tipString = formatter.string(from: tip as NSNumber)!
+        let totalString = formatter.string(from: total as NSNumber)!
+
+        tipLabel.text = tipString
+        totalLabel.text = totalString
     }
     
     func ShowDecimalPad()
